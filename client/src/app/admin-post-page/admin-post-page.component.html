@@ -1,0 +1,54 @@
+<div class="page-title">
+    <h4>Сайты</h4>
+    <button
+      class="waves-effect waves-light btn grey darken-1"
+      routerLink="/admin/posts/new"
+    >
+      Добавить сайт
+    </button>
+</div>
+
+<div
+  class="row"
+  *ngIf="posts$ | async as posts; else loader"
+>
+    <div class="col s12">
+      <table *ngIf="posts.length !== 0; else empty">
+        <thead>
+          <tr>
+              <th>Название</th>
+              <th>Описание</th>
+              <th>Ссылка</th>
+              <th>Категории</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let post of posts">
+            <td>{{post.title}}</td>
+            <td>{{post.text}}</td>
+            <td>{{post.url}}</td>
+            <td>
+                <select class="browser-default">
+                    <option value="" disabled selected>Категории</option>
+                    <option *ngFor="let item of post.list">
+                      {{item}}
+                    </option>
+                </select>
+            </td>
+            <td>
+              <a class="waves-effect waves-light btn-small" [routerLink]="['/admin/posts', post._id]">редактировать</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #empty>
+        <div class="center">
+          У вас нет ни одного сайта.
+        </div>
+      </ng-template>
+    </div>
+</div>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
+

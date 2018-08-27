@@ -1,0 +1,118 @@
+<div class="page-title">
+    <h4>
+        <a routerLink="/admin/posts">Сайты</a>
+        <i class="material-icons">keyboard_arrow_right</i>
+        {{isNew ? 'Добавить' : 'Редактировать'}} сайт
+    </h4>
+    <span>
+        <button class="btn btn-small red">
+          <i class="material-icons">delete</i>
+        </button>
+      </span>
+</div>
+
+<div class="row">
+    <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSumbit()">
+        <div class="input-field">
+            <input
+              formControlName="title"
+              id="title"
+              type="text"
+              [ngClass]="{'invalid': form.get('title').invalid && form.get('title').touched}"
+            >
+            <label for="title">Название</label>
+            <span
+              class="helper-text red-text"
+              *ngIf="form.get('title').invalid && form.get('title').touched"
+            >
+              <span *ngIf="form.get('title').errors['required']">
+                Имя сайта не может быть пустым.
+              </span>
+            </span>
+        </div>
+        <div class="input-field">
+          <textarea
+            formControlName="text"
+            id="textarea1"
+            class="materialize-textarea"
+            [ngClass]="{'invalid': form.get('text').invalid && form.get('text').touched}"
+          ></textarea>
+          <label for="textarea1">Описание</label>
+          <span
+            class="helper-text red-text"
+            *ngIf="form.get('text').invalid && form.get('text').touched"
+          >
+            <span *ngIf="form.get('text').errors['required']">
+               Описание сайта не может быть пустым.
+            </span>
+          </span>
+        </div>
+        <div class="input-field">
+            <input
+              formControlName="url"
+              id="url"
+              type="text"
+              [ngClass]="{'invalid': form.get('url').invalid && form.get('url').touched}"
+            >
+            <label for="url">Ссылка</label>
+            <span
+                class="helper-text red-text"
+                *ngIf="form.get('url').invalid && form.get('url').touched"
+              >
+              <span *ngIf="form.get('url').errors['required']">
+                Url сайта не может быть пустым.
+              </span>
+            </span>
+        </div>
+        <div class="input-field" *ngIf="isNew">
+            <select multiple #selectkat id="list" formControlName="list">
+                <option value="" disabled selected>Выберете категорию</option>
+                <option ngValue="Вёрстка">Вёрстка</option>
+                <option ngValue="WordPress">WordPress</option>
+                <option ngValue="ModX">ModX</option>
+                <option ngValue="OpenCart">OpenCart</option>
+            </select>
+        <label for="list">Добавить категории</label>
+        </div>
+        <div class="input-field" *ngIf="!isNew">
+            <input
+              formControlName="list"
+              type="text"
+            >
+        </div>
+        <div>
+            <input
+              type="file"
+              class="d-none"
+              (change)="onFileUpload($event)"
+              #input
+            >
+            <button
+              (click)="triggerClick()"
+              [disabled]="form.disabled"
+              type="button"
+              class="waves-effect waves-light btn orange lighten-2 mb2"
+            >
+                <i class="material-icons left">backup</i>
+                Загрузить изображение
+            </button>
+        </div>
+
+        <div>
+            <button
+              type="submit"
+              [disabled]="form.invalid || form.disabled"
+              class="waves-effect waves-light btn">
+                Сохранить изменения
+            </button>
+        </div>
+      </form>
+
+    <div class="col s12 l4 center">
+        <img
+          class="responsive-img h200"
+          [src]="imagePreview"
+          *ngIf="imagePreview"
+        >
+    </div>
+</div>
