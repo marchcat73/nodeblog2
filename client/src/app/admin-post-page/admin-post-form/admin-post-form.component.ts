@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MaterialService } from '../../shared/classes/material.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { PostsServise } from '../../shared/services/posts.service';
 import { switchMap } from 'rxjs/operators';
@@ -24,7 +24,8 @@ export class AdminPostFormComponent implements OnInit, AfterViewInit {
 
 
   constructor(private route: ActivatedRoute,
-              private postsService: PostsServise) { }
+              private postsService: PostsServise,
+              private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -78,7 +79,9 @@ export class AdminPostFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    MaterialService.initFormSelect(this.selectkatRef);
+    if (this.isNew) {
+      MaterialService.initFormSelect(this.selectkatRef);
+    }
   }
 
   onFileUpload(event: any) {
@@ -92,6 +95,18 @@ export class AdminPostFormComponent implements OnInit, AfterViewInit {
     };
 
     reader.readAsDataURL(file);
+  }
+
+  deletePost() {
+    const decision = window.confirm(`Вы уверены что хотите удалить сайт "${this.post.title}"`);
+    if (decision) {
+      this.postsService.delete(this.post._id)
+        .subscribe(
+          response => MaterialService.toast(response.message),
+          error => MaterialService.toast(error.error.message),
+          () => this.router.navigate(['/admin/posts'])
+        );
+    }
   }
 
   onSumbit() {

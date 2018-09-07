@@ -1,0 +1,10 @@
+.portfolio_item:hover .port_item_cont {
+  opacity: 1;
+  padding-top: 5%;
+}
+section h3 {
+  font-size: 1.3rem;
+}
+.s_portfolio {
+  min-height: 900px;
+}

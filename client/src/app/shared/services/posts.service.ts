@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Post } from '../interfaces';
+import { Post, Message } from '../interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -42,6 +42,10 @@ export class PostsServise {
     fd.append('url', url);
     fd.append('list', list);
     return this.http.patch<Post>(`/api/admin/post/${id}`, fd);
+  }
+
+  delete(id: string): Observable<Message> {
+    return this.http.delete<Message>(`/api/admin/post/${id}`);
   }
 
 }

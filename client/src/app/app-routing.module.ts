@@ -7,7 +7,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
-import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
+// import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
 import { PricePageComponent } from './price-page/price-page.component';
 import { AuthGuard } from './shared/classes/auth.guard';
 import { AdminPostPageComponent } from './admin-post-page/admin-post-page.component';
@@ -20,7 +20,7 @@ const routes: Routes = [
       // {path: '', redirectTo: '', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
       {path: 'contact', component: ContactPageComponent},
-      {path: 'portfolio', component: PortfolioPageComponent},
+      {path: 'portfolio', loadChildren: './portfolio-page/portfolio.module#PortfolioModule'},
       {path: 'price', component: PricePageComponent}
     ]
   },

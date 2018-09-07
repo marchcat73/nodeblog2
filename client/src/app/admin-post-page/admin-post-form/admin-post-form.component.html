@@ -5,7 +5,11 @@
         {{isNew ? 'Добавить' : 'Редактировать'}} сайт
     </h4>
     <span>
-        <button class="btn btn-small red">
+        <button
+          *ngIf="!isNew"
+          class="btn btn-small red"
+          (click)="deletePost()"
+        >
           <i class="material-icons">delete</i>
         </button>
       </span>
@@ -67,10 +71,10 @@
         <div class="input-field" *ngIf="isNew">
             <select multiple #selectkat id="list" formControlName="list">
                 <option value="" disabled selected>Выберете категорию</option>
-                <option ngValue="Вёрстка">Вёрстка</option>
-                <option ngValue="WordPress">WordPress</option>
-                <option ngValue="ModX">ModX</option>
-                <option ngValue="OpenCart">OpenCart</option>
+                <option ngValue="verstka">Вёрстка</option>
+                <option ngValue="wordpress">WordPress</option>
+                <option ngValue="modx">ModX</option>
+                <option ngValue="opencart">OpenCart</option>
             </select>
         <label for="list">Добавить категории</label>
         </div>

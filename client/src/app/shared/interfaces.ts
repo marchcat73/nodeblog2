@@ -3,6 +3,9 @@ export interface User {
   password: string;
 }
 
+export interface Message {
+  message: string;
+}
 export interface Post {
   title: string;
   text: string;

@@ -7,7 +7,6 @@ import { environment } from './environments/environment';
 import 'materialize-css/dist/js/materialize.js';
 
 
-
 if (environment.production) {
   enableProdMode();
 }

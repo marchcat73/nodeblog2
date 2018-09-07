@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { PostPageComponent } from './post-page/post-page.component';
-import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
+// import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
 import { PricePageComponent } from './price-page/price-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -19,8 +19,10 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
 import { AdminPostPageComponent } from './admin-post-page/admin-post-page.component';
 import { AdminCategoriesPageComponent } from './admin-categories-page/admin-categories-page.component';
-import { LoaderComponent } from './shared/components/loader/loader.component';
+// import { LoaderComponent } from './shared/components/loader/loader.component';
 import { AdminPostFormComponent } from './admin-post-page/admin-post-form/admin-post-form.component';
+// import { PortfolioModule } from './portfolio-page/portfolio.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { AdminPostFormComponent } from './admin-post-page/admin-post-form/admin-
     HomePageComponent,
     CategoryPageComponent,
     PostPageComponent,
-    PortfolioPageComponent,
+  //  PortfolioPageComponent,
     PricePageComponent,
     ContactPageComponent,
     LoginPageComponent,
@@ -38,7 +40,7 @@ import { AdminPostFormComponent } from './admin-post-page/admin-post-form/admin-
     RegisterPageComponent,
     AdminPostPageComponent,
     AdminCategoriesPageComponent,
-    LoaderComponent,
+//    LoaderComponent,
     AdminPostFormComponent
   ],
   imports: [
@@ -46,7 +48,9 @@ import { AdminPostFormComponent } from './admin-post-page/admin-post-form/admin-
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+//    PortfolioModule,
+    SharedModule
   ],
   providers: [
     {
