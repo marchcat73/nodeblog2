@@ -4,6 +4,7 @@ import { PostsServise } from '../shared/services/posts.service';
 import { Post } from '../shared/interfaces';
 import { MaterialService, MaterialInstance } from '../shared/classes/material.service';
 import * as $ from 'jquery';
+import { Subscription } from 'rxjs';
 declare let $: any;
 /*declare let require: any;
 const mixitup = require('mixitup');*/
@@ -21,19 +22,27 @@ export class PortfolioPageComponent implements OnInit, AfterViewInit, OnDestroy 
   posts: Post[] = [];
   selectedPost: Post;
   modal: MaterialInstance;
+  aSub: Subscription;
 
 
   constructor(private postsService: PostsServise) { }
 
   ngOnInit() {
-    this.postsService.fetch().subscribe(posts => {
+    this.aSub = this.postsService.fetch().subscribe(posts => {
       this.posts = posts;
+    },
+    error => MaterialService.toast(error.error.message),
+    () => {
       MixitupService.initMixitup(this.portfoliogridRef);
-    });
+    }
+    );
   }
 
   ngOnDestroy() {
     this.modal.destroy();
+    if (this.aSub) {
+      this.aSub.unsubscribe();
+    }
   }
 
   ngAfterViewInit() {
