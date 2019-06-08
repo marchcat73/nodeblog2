@@ -11,8 +11,8 @@ import { MaterialService } from '../shared/classes/material.service';
 
 
 export class HomePageComponent implements OnInit, AfterViewInit {
-  @ViewChild('parallax') parallaxRef: ElementRef;
-  @ViewChild('personfoto') personfotoRef: ElementRef;
+  @ViewChild('parallax', null) parallaxRef: ElementRef;
+  @ViewChild('personfoto', null) personfotoRef: ElementRef;
 
   homeStatus = true;
 

@@ -10,7 +10,7 @@ import { MaterialService } from '../../classes/material.service';
   styleUrls: ['./admin-layout.component.css']
 })
 export class AdminLayoutComponent implements OnInit, AfterViewInit {
-  @ViewChild('floating') floatingRef: ElementRef;
+  @ViewChild('floating', null) floatingRef: ElementRef;
 
   links = [
     {url: '/admin/posts', name: `Сайты`},
