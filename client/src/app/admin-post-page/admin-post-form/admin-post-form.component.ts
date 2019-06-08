@@ -13,8 +13,8 @@ import { Post } from '../../shared/interfaces';
   styleUrls: ['./admin-post-form.component.css']
 })
 export class AdminPostFormComponent implements OnInit, AfterViewInit {
-  @ViewChild('selectkat') selectkatRef: ElementRef;
-  @ViewChild('input') inputRef: ElementRef;
+  @ViewChild('selectkat', null) selectkatRef: ElementRef;
+  @ViewChild('input', null) inputRef: ElementRef;
   form: FormGroup;
   image: File;
   isNew = true;

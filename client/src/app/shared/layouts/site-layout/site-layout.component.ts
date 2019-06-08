@@ -9,7 +9,7 @@ import { MaterialService } from '../../classes/material.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SiteLayoutComponent implements OnInit,  AfterViewInit {
-  @ViewChild('sidenav') sidenavRef: ElementRef;
+  @ViewChild('sidenav', null) sidenavRef: ElementRef;
   constructor() { }
 
   ngOnInit() {

@@ -17,8 +17,8 @@ const mixitup = require('mixitup');*/
 })
 export class PortfolioPageComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() post: Post[];
-  @ViewChild('portfoliogrid') portfoliogridRef: ElementRef;
-  @ViewChild('modal') modalRef: ElementRef;
+  @ViewChild('portfoliogrid', null) portfoliogridRef: ElementRef;
+  @ViewChild('modal', null) modalRef: ElementRef;
   posts: Post[] = [];
   selectedPost: Post;
   modal: MaterialInstance;
